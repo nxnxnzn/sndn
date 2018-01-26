@@ -84,10 +84,8 @@ wget -O /root/.bashrc "https://raw.githubusercontent.com/sslmode/sslmode/master/
 sudo apt-get -y install ruby
 sudo gem install lolcat
 # script
-wget -O /usr/local/bin/menu "http://rzvpn.net/random/menu"
 wget -O /etc/pam.d/common-password "http://rzvpn.net/random/common-password"
 chmod +x /etc/pam.d/common-password
-chmod +x /usr/local/bin/menu 
 # fail2ban & exim & protection
 apt-get -y install fail2ban sysv-rc-conf dnsutils dsniff zip unzip;
 wget https://github.com/jgmdev/ddos-deflate/archive/master.zip;unzip master.zip;
@@ -101,10 +99,12 @@ apt-get -y install dropbear
 wget -O /etc/default/dropbear "http://rzvpn.net/random/dropbear"
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-# install squid3
-wget -q https://raw.githubusercontent.com/gidhanbagus/ndasmu/master/squid3.sh
-chmod 100 squid3.sh
-./squid3.sh
+# squid3
+apt-get -y install squid3
+wget -O /etc/squid3/squid.conf "http://rzvpn.net/random/squid.conf"
+wget -O /etc/squid/squid.conf "http://rzvpn.net/random/squid.conf"
+sed -i "s/ipserver/$myip/g" /etc/squid3/squid.conf
+sed -i "s/ipserver/$myip/g" /etc/squid/squid.conf
 # kiaua
 apt-get -y install openvpn
 wget -O /etc/openvpn/openvpn.tar "http://rzvpn.net/random/openvpn.tar"
